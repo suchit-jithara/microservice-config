@@ -1,6 +1,6 @@
-spring:
-  application:
-    name: default  
+# spring:
+#   application:
+#     name: default  
 eureka:
   instance:
     prefer-ip-address: true # Use IP instead of hostname for registration (useful for containers)
