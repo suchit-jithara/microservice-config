@@ -3,9 +3,15 @@ spring:
     name: default  
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true # Use IP instead of hostname for registration (useful for containers)
+    lease-renewal-interval-in-seconds: 10 # (default is 30)
+    lease-expiration-duration-in-seconds: 30 # (default is 90)
   client:
-    fetch-registry: true
-    register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka # URL of the Eureka server where the client should register
+    register-with-eureka: true # (usually true for clients)
+    fetch-registry: true # (usually true for clients)
+#   It does 3 things:
+#     Connects to the given Eureka Server URL
+#     Sends a heartbeat every 30 seconds to keep itself alive in the registry
+#     Registers itself using the spring.application.name as its service name
